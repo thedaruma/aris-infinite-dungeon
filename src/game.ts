@@ -10,8 +10,9 @@ import PhaserUpdatePlugin from "./utility/UpdatePlugin";
 import { Plugin as NineSlicePlugin } from "phaser3-nineslice";
 
 import { BLACK } from "./utility/Constants";
-import { AudioScene } from "./scenes/audioScene";
-import { BootScene } from "./scenes/bootScene";
+import { AudioScene } from "./scenes/AudioScene";
+import { BootScene } from "./scenes/BootScene";
+import { CombatScene } from "./scenes/CombatScene";
 export type GameScenes = "BootScene" | "MainScene" | "Audio";
 // main game configuration
 const config: Phaser.Types.Core.GameConfig = {
@@ -19,7 +20,7 @@ const config: Phaser.Types.Core.GameConfig = {
   height: 600,
   type: Phaser.AUTO,
   parent: "game",
-  scene: [BootScene, MainScene, AudioScene],
+  scene: [CombatScene, BootScene, MainScene, AudioScene,],
   plugins: {
     global: [NineSlicePlugin.DefaultCfg],
     scene: [

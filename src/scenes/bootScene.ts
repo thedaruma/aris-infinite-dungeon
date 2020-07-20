@@ -37,7 +37,7 @@ export class BootScene extends Phaser.Scene {
 
       setTimeout(() => {
         this.scene.start("Audio");
-        this.scene.start("MainScene");
+        this.scene.start("CombatScene");
       }, 3000);
     });
 
