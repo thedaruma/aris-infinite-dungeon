@@ -1,5 +1,5 @@
 import { AnimationHelper } from "../utility/tweens/animation-helper";
-import { BLACK, WHITE } from "../utility/Constants";
+import { BLACK, WHITE, CREAM } from "../utility/Constants";
 import { State } from "../utility/state/State";
 
 export class BootScene extends Phaser.Scene {
@@ -20,6 +20,10 @@ export class BootScene extends Phaser.Scene {
     animationHelper.createGameAnimations(
       this.cache.json.get("ryanAndLoAnimation").anims
     );
+    animationHelper.createGenericGameAnimations(
+      ["egg-baby", "slime"],
+      this.cache.json.get("combat").anims
+    );
 
     const sprite = this.add.sprite(400, 300, "ryanandlo");
     sprite.scaleX = 1;
@@ -38,7 +42,7 @@ export class BootScene extends Phaser.Scene {
       setTimeout(() => {
         this.scene.start("Audio");
         this.scene.start("CombatScene");
-      }, 3000);
+      }, 1);
     });
 
     // When we get to the point  where we can save state to a JSON, this is where we'd load it in, flipping the proper flags.
@@ -80,7 +84,11 @@ export class BootScene extends Phaser.Scene {
       "./src/assets/pack/tilemaps.json",
       "preload_tilemaps"
     );
-
+    // this.load.pack(
+    //   "preload_data",
+    //   "./src/assets/data/animations/combat.json",
+    //   "preload_data"
+    // );
     this.load.pack("preload", "./src/assets/pack.json", "preload");
   }
   private createLoadingGraphics(): void {

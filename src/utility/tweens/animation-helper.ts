@@ -55,37 +55,36 @@
  */
 
 interface AnimationData {
-  key: string,
-  frames: Frame,
-  repeat: number,
-  frameRate: number,
-  defaultTextureKey,
-  duration,
-  skipMissedFrames,
-  delay,
-  repeatDelay,
-  yoyo,
-  showOnStart,
-  hideOnComplete,
+  key: string;
+  frames: Frame;
+  repeat: number;
+  frameRate: number;
+  defaultTextureKey;
+  duration;
+  skipMissedFrames;
+  delay;
+  repeatDelay;
+  yoyo;
+  showOnStart;
+  hideOnComplete;
 }
 
 enum GenerationTypes {
   generateFrameNumbers,
   generateFrameNames,
-  default
+  default,
 }
 
 interface Frame {
-  typeOfGeneration: GenerationTypes,
-  key: string,
-  frames: any,
-  prefix?: string,
-  start?: number,
-  end?: number,
-  suffix?: string,
-  zeroPad?: number,
-  first?: boolean
-
+  typeOfGeneration: GenerationTypes;
+  key: string;
+  frames: any;
+  prefix?: string;
+  start?: number;
+  end?: number;
+  suffix?: string;
+  zeroPad?: number;
+  first?: boolean;
 }
 export class AnimationHelper {
   private scene: Phaser.Scene;
@@ -97,39 +96,42 @@ export class AnimationHelper {
 
   // If we have spritesheets with similar animation states, we can create an animation
   // key it uniquely for each spritesheet.
-  public createGenericGameAnimations(keyList: string[], animationData: AnimationData[]) {
-    keyList.forEach(key => {
-      const keyedAnimationData = animationData.map(d => {
-        const copy = { ...d }
+  public createGenericGameAnimations(
+    keyList: string[],
+    animationData: AnimationData[]
+  ) {
+    keyList.forEach((key) => {
+      const keyedAnimationData = animationData.map((d) => {
+        const copy = { ...d };
         copy.frames.key = key;
         copy.key = `${key}-${d.key}`;
         return copy;
       });
-      this.createGameAnimations(keyedAnimationData)
-    })
+      this.createGameAnimations(keyedAnimationData);
+    });
   }
 
   public createGameAnimations(animationData: AnimationData[]): void {
-    console.log(animationData)
     for (let data of animationData) {
       let frames;
       let framesArray;
-      console.log(data)
       if (data.frames.typeOfGeneration === GenerationTypes.generateFrameNames) {
         frames = this.scene.anims.generateFrameNames(data.frames.key, {
-          prefix: data.frames.prefix || '',
+          prefix: data.frames.prefix || "",
           start: data.frames.start || 0,
           end: data.frames.end || 0,
-          suffix: data.frames.suffix || '',
+          suffix: data.frames.suffix || "",
           zeroPad: data.frames.zeroPad || 0,
           frames: data.frames.frames,
         });
-      } else if (data.frames.typeOfGeneration === GenerationTypes.generateFrameNumbers) {
+      } else if (
+        data.frames.typeOfGeneration === GenerationTypes.generateFrameNumbers
+      ) {
         frames = this.scene.anims.generateFrameNumbers(data.frames.key, {
           start: data.frames.start || 0,
           end: data.frames.end || -1,
           first: data.frames.first || false,
-          frames: data.frames.frames || false
+          frames: data.frames.frames || false,
         });
       }
       this.scene.anims.create({
@@ -144,9 +146,8 @@ export class AnimationHelper {
         repeatDelay: data.repeatDelay || 0,
         yoyo: data.yoyo || false,
         showOnStart: data.showOnStart || false,
-        hideOnComplete: data.hideOnComplete || false
+        hideOnComplete: data.hideOnComplete || false,
       });
-
     }
   }
 }

@@ -4,6 +4,10 @@
       "type": "json",
       "key": "ryanAndLoAnimation",
       "url": "./src/assets/data/animations/ryanandlo.json"
+    }, {
+      "type": "json",
+      "key": "combat",
+      "url": "./src/assets/data/animations/combat.json"
     } ]
   }
 }

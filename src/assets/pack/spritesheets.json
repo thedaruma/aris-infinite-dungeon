@@ -53,6 +53,24 @@
           "frameWidth": 500,
           "frameHeight": 103
         }
+      },
+      {
+        "type": "spritesheet",
+        "key": "slime",
+        "url": "./src/assets/sprites/slime.png",
+        "frameConfig": {
+          "frameWidth": 64,
+          "frameHeight": 64
+        }
+      },
+      {
+        "type": "spritesheet",
+        "key": "egg-baby",
+        "url": "./src/assets/sprites/egg-baby.png",
+        "frameConfig": {
+          "frameWidth": 64,
+          "frameHeight": 64
+        }
       }
 
     ]
